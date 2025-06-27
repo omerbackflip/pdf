@@ -1,0 +1,8 @@
+{
+  "name": "pdf",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "jspdf": "^2.5.1"
+  }
+}
