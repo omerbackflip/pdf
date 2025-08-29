@@ -1,15 +1,13 @@
-import jsPDF from "jspdf";
+import html2pdf from "html2pdf.js";
 
-export async function generatePdfFromHtml(htmlContent, options = {}) {
-  const doc = new jsPDF(options);
-  
-  doc.html(htmlContent, {
-    callback: function (doc) {
-      doc.save(options.filename || "holder.pdf");
-    },
-    x: 10,
-    y: 10,
-    html2canvas: { scale: 0.8 },
-    autoPaging: 'text',
-  });
+export async function generatePdfFromElement(element, filename = 'holder.pdf') {
+  const opt = {
+    margin:       0.5,
+    filename:     filename,
+    image:        { type: 'jpeg', quality: 0.98 },
+    html2canvas:  { scale: 2 },
+    jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
+  };
+
+  await html2pdf().set(opt).from(element).save();
 }
